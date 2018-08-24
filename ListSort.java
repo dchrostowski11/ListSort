@@ -32,7 +32,7 @@ import java.util.*;
 public class ServerSort { 
 		
 	//initialize three global lists, one for each list inserted and one for the result
-	static ArrayList<String> avamarServers = new ArrayList<String>();
+	static ArrayList<String> aServers = new ArrayList<String>();
 	static ArrayList<String> searchServers = new ArrayList<String>();
 	static ArrayList<String> result = new ArrayList<String>();
 
@@ -42,19 +42,19 @@ public class ServerSort {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Please enter the server list file name: ");
 		String serverList = sc.nextLine();
-		System.out.print("Please enter the Avamar list file name: ");
-		String avamarList = sc.nextLine();
+		System.out.print("Please enter the search list file name: ");
+		String aList = sc.nextLine();
 				
 		//fill in the lists
 		searchServers = createList(serverList);
-		avamarServers = createList(avamarList);		
+		aServers = createList(aList);		
 
 		//remove any duplicates from the lists
 		Collections.sort(searchServers);
 		searchServers = trimList(searchServers);
 		
-		Collections.sort(avamarServers);
-		avamarServers = trimList(avamarServers);
+		Collections.sort(aServers);
+		aServers = trimList(aServers);
 
 
 		int selection;
@@ -68,8 +68,8 @@ public class ServerSort {
 		
 		switch(selection) {
 		case 1:
-			System.out.println("Here is a list of all the misses:"); //NOT IN THE AVAMAR LIST
-			result = listCompareMisses(searchServers, avamarServers);
+			System.out.println("Here is a list of all the misses:"); //NOT IN THE SEARCH LIST
+			result = listCompareMisses(searchServers, aServers);
 			System.out.println(result.size());
 			if(result.size() > 0){
 				printList(result);
@@ -79,8 +79,8 @@ public class ServerSort {
 			}
 			break;
 		case 2:
-			System.out.println("Here is a list of the servers that are in the search list and in the avamar list:"); //IN THE AVAMAR LIST
-			result = listCompareHits(searchServers, avamarServers);
+			System.out.println("Here is a list of the servers that are in the search list and in the search list:"); //IN THE SEARCH LIST
+			result = listCompareHits(searchServers, aServers);
 			System.out.println(result.size());
 			if(result.size() > 0){
 				printList(result);
